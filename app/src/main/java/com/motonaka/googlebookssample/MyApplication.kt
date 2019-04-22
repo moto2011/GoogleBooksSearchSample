@@ -2,6 +2,8 @@ package com.motonaka.googlebookssample
 
 import android.app.Application
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.motonaka.googlebookssample.api.GoogleBooksApi
+import com.motonaka.googlebookssample.presentation.SecondViewModel
 import com.motonaka.googlebookssample.repository.GoogleBooksRepository
 import com.motonaka.googlebookssample.repository.GoogleBooksRepositoryImpl
 import okhttp3.OkHttpClient
@@ -28,12 +30,11 @@ class MyApplication : Application() {
 }
 
 val myModule = module {
-//    single { createOkHttpClient() }
-//    single { createRetrofit(createOkHttpClient()) }
+    single { createOkHttpClient() }
+    single { createRetrofit(get()) }
 
-    single<GoogleBooksRepository> { GoogleBooksRepositoryImpl(createRetrofit(createOkHttpClient())) }
+    single<GoogleBooksRepository> { GoogleBooksRepositoryImpl(get()) }
 
-//    viewModel { MainViewModel(get()) }
     viewModel { SecondViewModel(get()) }
 }
 

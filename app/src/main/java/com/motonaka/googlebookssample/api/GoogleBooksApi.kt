@@ -1,4 +1,4 @@
-package com.motonaka.googlebookssample
+package com.motonaka.googlebookssample.api
 
 import com.motonaka.googlebookssample.response.SearchResponse
 import kotlinx.coroutines.Deferred

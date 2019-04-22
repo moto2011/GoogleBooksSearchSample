@@ -6,36 +6,43 @@
     <data>
 
         <variable
-            name="volume"
+            name="volumeInfo"
             type="com.motonaka.googlebookssample.response.VolumeInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@android:color/white"
+        android:foreground="?android:selectableItemBackground">
 
         <ImageView
             android:id="@+id/image_thumbnail"
-            android:layout_width="wrap_content"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/darker_gray"
+            android:scaleType="fitCenter"
+            app:image_url="@{volumeInfo.smallThumbnail}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/text_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:maxLength="2"
-            android:text="@{volume.title}"
+            android:maxLines="2"
+            android:text="@{volumeInfo.title}"
+            android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/text_author"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,12 +56,12 @@
             android:id="@+id/text_author"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:maxLength="2"
-            android:text="@{volume.authorsStr}"
-            app:layout_constraintBottom_toTopOf="@+id/text_description"
+            android:maxLines="2"
+            android:text="@{volumeInfo.authorsStr}"
+            app:layout_constraintBottom_toTopOf="@+id/text_description_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/text_title"
@@ -62,20 +69,34 @@
             tools:text="著者" />
 
         <TextView
-            android:id="@+id/text_description"
+            android:id="@+id/text_description_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:text="@string/description"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/text_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_author" />
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:ellipsize="end"
-            android:maxLength="3"
-            android:text="@{volume.description}"
+            android:maxLines="3"
+            android:text="@{volumeInfo.description}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/text_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_author"
+            app:layout_constraintTop_toBottomOf="@+id/text_description_label"
             tools:text="説明" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

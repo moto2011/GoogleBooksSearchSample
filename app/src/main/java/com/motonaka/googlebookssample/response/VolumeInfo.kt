@@ -6,8 +6,10 @@ data class VolumeInfo(
     val publisher: String,
     val publishedDate: String,
     val description: String,
-    val imageLinks: ImageLinks,
+    val imageLinks: ImageLinks?,
     val mainCategory: String
 ) {
-    fun getAuthorsStr() = if (authors != null) authors.joinToString(",") else ""
+    fun getAuthorsStr() = authors?.joinToString(",") ?: ""
+
+    fun getSmallThumbnail() = imageLinks?.smallThumbnail ?: ""
 }

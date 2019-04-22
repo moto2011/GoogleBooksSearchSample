@@ -1,6 +1,5 @@
-package com.motonaka.googlebookssample
+package com.motonaka.googlebookssample.presentation
 
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.motonaka.googlebookssample.repository.GoogleBooksRepository
@@ -13,9 +12,7 @@ class SecondViewModel(private val repository: GoogleBooksRepository): ViewModel(
     val state: MutableLiveData<Boolean> = MutableLiveData()
     val item: MutableLiveData<SearchResponse> = MutableLiveData()
 
-    var keyword: String? = null
-
-    fun search() {
+    fun search(keyword: String?) {
         GlobalScope.launch {
             state.postValue(true)
             keyword?.let {
@@ -24,6 +21,20 @@ class SecondViewModel(private val repository: GoogleBooksRepository): ViewModel(
                     item.postValue(result.body())
                 } else {
                 }
+            }
+        }
+    }
+
+    fun reload(keyword: String) {
+        state.postValue(false)
+        GlobalScope.launch {
+            keyword?.let {
+                val result = repository.search(keyword = it)
+                if (result.isSuccessful) {
+                    item.postValue(result.body())
+                } else {
+                }
+                state.postValue(false)
             }
         }
     }

@@ -1,8 +1,7 @@
 package com.motonaka.googlebookssample.repository
 
-import com.motonaka.googlebookssample.GoogleBooksApi
+import com.motonaka.googlebookssample.api.GoogleBooksApi
 import com.motonaka.googlebookssample.response.SearchResponse
-import com.motonaka.googlebookssample.response.Volume
 import retrofit2.Response
 
 interface GoogleBooksRepository {

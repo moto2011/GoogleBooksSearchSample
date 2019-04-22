@@ -1,4 +1,4 @@
-package com.motonaka.googlebookssample
+package com.motonaka.googlebookssample.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import com.motonaka.googlebookssample.R
 import com.motonaka.googlebookssample.databinding.FragmentSecondBinding
+import com.motonaka.googlebookssample.extenstion.addDefalutItemDecoration
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val ARG_PARAM1 = "keyword"
@@ -30,22 +31,20 @@ class SecondFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second, container, false)
+        binding.recyclerView.addDefalutItemDecoration()
 
         val controller = SecondController()
-
-        viewModel.keyword = keyword
 
         viewModel.state.observe(this, Observer {
             if (it) binding.progressBar.visibility = View.GONE
         })
-
         viewModel.item.observe(this, Observer {
             controller.valumes = it.items
             controller.requestModelBuild()
             binding.recyclerView.adapter = controller.adapter
-        })
 
-        viewModel.search()
+        })
+        viewModel.search(keyword)
 
         return binding.root
     }
