@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -39,6 +40,9 @@ class SecondFragment : Fragment() {
         viewModel.state.observe(this, Observer {
             if (it) binding.progressBar.toGone() else binding.progressBar.toVisible()
         })
+        viewModel.error.observe(this, Observer {
+            if (it) Toast.makeText(context, getString(R.string.failure_network), Toast.LENGTH_SHORT).show()
+        })
         viewModel.item.observe(this, Observer {
             controller.valumes = it.items
             controller.requestModelBuild()
@@ -52,6 +56,6 @@ class SecondFragment : Fragment() {
     fun reload(keyword: String?) {
         arguments = bundleOf(ARG_PARAM1 to keyword)
         this.keyword = keyword
-        viewModel.reload(this.keyword)
+        viewModel.search(this.keyword)
     }
 }

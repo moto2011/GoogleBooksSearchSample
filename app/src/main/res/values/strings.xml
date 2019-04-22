@@ -6,4 +6,5 @@
     <string name="search_bar_placeholder">書籍や著者の名前で書籍検索</string>
     <string name="description">説明</string>
     <string name="license">OSS License</string>
+    <string name="failure_network">インターネットに接続されていません</string>
 </resources>
