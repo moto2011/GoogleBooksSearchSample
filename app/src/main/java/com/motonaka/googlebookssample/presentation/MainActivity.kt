@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import com.motonaka.googlebookssample.databinding.ActivityMainBinding
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding.searchBar.setOnSearchActionListener(this)
     }
 
@@ -33,17 +31,17 @@ class MainActivity : AppCompatActivity(), MaterialSearchBar.OnSearchActionListen
                 val bundle = bundleOf("keyword" to binding.searchBar.text.toString())
                 findNavController(R.id.nav_host).navigate(R.id.action_firstFragment_to_secondFragment, bundle)
             } else if (it.childFragmentManager.fragments[0] is SecondFragment) {
-                (it.childFragmentManager.fragments[0] as SecondFragment).viewModel.reload(binding.searchBar.text.toString())
+                (it.childFragmentManager.fragments[0] as SecondFragment).reload(binding.searchBar.text.toString())
             }
         }
     }
 
     override fun onButtonClicked(buttonCode: Int) {
-        Toast.makeText(this, "onButtonClicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onButtonClicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSearchStateChanged(enabled: Boolean) {
-        Toast.makeText(this, "onButtonClicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "onButtonClicked", Toast.LENGTH_SHORT).show()
     }
 
     private fun hideKeyboard() {

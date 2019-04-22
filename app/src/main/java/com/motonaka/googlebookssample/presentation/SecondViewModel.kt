@@ -7,7 +7,7 @@ import com.motonaka.googlebookssample.response.SearchResponse
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class SecondViewModel(private val repository: GoogleBooksRepository): ViewModel() {
+class SecondViewModel(private val repository: GoogleBooksRepository) : ViewModel() {
 
     val state: MutableLiveData<Boolean> = MutableLiveData()
     val item: MutableLiveData<SearchResponse> = MutableLiveData()
@@ -25,7 +25,7 @@ class SecondViewModel(private val repository: GoogleBooksRepository): ViewModel(
         }
     }
 
-    fun reload(keyword: String) {
+    fun reload(keyword: String?) {
         state.postValue(false)
         GlobalScope.launch {
             keyword?.let {
@@ -34,7 +34,7 @@ class SecondViewModel(private val repository: GoogleBooksRepository): ViewModel(
                     item.postValue(result.body())
                 } else {
                 }
-                state.postValue(false)
+                state.postValue(true)
             }
         }
     }

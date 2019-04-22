@@ -1,5 +1,6 @@
 package com.motonaka.googlebookssample.extenstion
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,7 +15,15 @@ fun ImageView.setLoadImage(url: String?) {
     }
 }
 
-fun RecyclerView.addDefalutItemDecoration() {
+fun RecyclerView.addDefaultItemDecoration() {
     val dividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager(context).orientation)
     addItemDecoration(dividerItemDecoration)
+}
+
+fun View.toVisible() {
+    visibility = View.VISIBLE
+}
+
+fun View.toGone() {
+    visibility = View.GONE
 }
