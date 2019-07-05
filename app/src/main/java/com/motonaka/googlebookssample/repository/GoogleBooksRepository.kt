@@ -12,6 +12,6 @@ interface GoogleBooksRepository {
 class GoogleBooksRepositoryImpl(val api: GoogleBooksApi): GoogleBooksRepository {
 
     override suspend fun search(keyword: String): Response<SearchResponse> {
-        return api.fetchList(keyword).await()
+        return api.fetchList(keyword)
     }
 }

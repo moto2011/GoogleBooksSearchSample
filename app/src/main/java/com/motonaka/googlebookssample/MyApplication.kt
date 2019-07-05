@@ -52,7 +52,6 @@ private fun createRetrofit(okHttpClient: OkHttpClient): GoogleBooksApi {
         .baseUrl("https://www.googleapis.com/books/v1/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
         .create(GoogleBooksApi::class.java)
 }

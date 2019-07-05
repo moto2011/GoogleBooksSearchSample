@@ -9,5 +9,5 @@ import retrofit2.http.Query
 interface GoogleBooksApi {
 
     @GET("volumes")
-    fun fetchList(@Query("q") keyword: String): Deferred<Response<SearchResponse>>
+    suspend fun fetchList(@Query("q") keyword: String): Response<SearchResponse>
 }
